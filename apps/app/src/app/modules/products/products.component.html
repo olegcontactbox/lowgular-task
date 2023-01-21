@@ -1,0 +1,23 @@
+<div class="products">
+  <h1>Product list
+    <span *ngIf="selectedCategory"> - {{selectedCategory}}</span>
+  </h1>
+  <mat-chip-list *ngIf="!selectedCategory">
+    <mat-chip (click)="showCategory(category)" *ngFor="let category of categories$ | async">{{category}}</mat-chip>
+  </mat-chip-list>
+  <mat-form-field appearance="fill">
+    <mat-label>Sort by price</mat-label>
+    <mat-select [formControl]="sort">
+      <mat-option value="asc">Low to high</mat-option>
+      <mat-option value="desc">High to low</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <ul>
+    <li *ngFor="let product of products$ | async">
+      <a [routerLink]="['/product', product.id]">
+        {{product.title}} {{product.price}}
+      </a>
+      <mat-icon (click)="deleteProduct(product.id)">delete</mat-icon>
+    </li>
+  </ul>
+</div>

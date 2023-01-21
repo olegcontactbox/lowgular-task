@@ -1,0 +1,9 @@
+<div class="product">
+  <h1>Product {{productId}}</h1>
+  <div *ngIf="product$ | async as product">
+    <p>{{product.title}}</p>
+    <p>{{product.description}}</p>
+    <p>{{product.price}}</p>
+    <img [src]="product.image">
+  </div>
+</div>
